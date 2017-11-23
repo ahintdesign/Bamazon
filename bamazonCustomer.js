@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var Table = require('cli-table');
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -17,6 +18,8 @@ connection.connect(function(err) {
   if (err) throw err;
 
   console.log("Connected to database.");
+
+  displayInventory();
 
 // displayInventory will retrieve the current inventory from the database and output it to the console
 function displayInventory() {
@@ -45,6 +48,15 @@ function displayInventory() {
 
       console.log("---------------------------------------------------------------------\n");
 
+});
 
+}
 
-    })
+});
+
+     inquirer.prompt({
+            name: "itemId",
+            type: "input",
+            message: "Enter the ID for the item you would like to purchase", //prompt user to id to buy
+            });
+     
